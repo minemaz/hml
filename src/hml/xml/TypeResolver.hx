@@ -69,7 +69,7 @@ class TypeResolver implements ITypeResolver<XMLDataRoot, Type> implements IXMLDa
 
 	function throwResolveError(t:Node) {
         for (n in t.unresolvedNodes)
-                Context.error('can\'t resolve node "${n.name}". Can\'t find haxe type or field with same name.', Context.makePosition(n.model.nodePos));
+                Sys.println( hml.xml.adapters.CustomHaxeTypeResolver.makeErrorMessage({message: 'can\'t resolve node "${n.name}". Can\'t find haxe type or field with same name.', pos: Context.makePosition(n.model.nodePos) } ));
         
         if (Std.is(t, Type))  cast(t, Type).declarations.iter(throwResolveError);
 		t.children.iter(throwResolveError);
