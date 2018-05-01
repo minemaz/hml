@@ -82,7 +82,7 @@ class BaseMetaResolver implements IHaxeTypeResolver<Node, Type> {
 	}
 	
 	public function getFieldNativeType(node:Node, qName:XMLQName):Null<haxe.macro.Type> {
-		if (qName.ns != node.name.ns || !meta.exists(qName.name)) return null;
+		if (qName.ns != node.name.ns || meta == null || !meta.exists(qName.name)) return null;
 
 		return if (node.nativeType.isChildOf(baseType)) {
 			var key = metaKey(qName);
